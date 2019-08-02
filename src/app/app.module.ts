@@ -1,14 +1,36 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
+import { StoreModule } from '@ngrx/store';
+import { BananaComponent } from './banana/banana.component';
+import { EffectsModule } from '@ngrx/effects';
+import { effects, reducers } from './app.state';
+import { CarComponent } from './car/car.component';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+const appRoutes: Routes = [
+  {path: 'banana', component: BananaComponent},
+  {path: 'car', component: CarComponent},
+];
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    BananaComponent,
+    CarComponent
   ],
   imports: [
-    BrowserModule
+    RouterModule.forRoot(
+      appRoutes
+    ),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+      logOnly: environment.production, // Restrict extension to log-only mode
+    }),
+    BrowserModule,
+    StoreModule.forRoot(reducers),
+    EffectsModule.forRoot(effects)
   ],
   providers: [],
   bootstrap: [AppComponent]
