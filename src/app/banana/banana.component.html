@@ -1,0 +1,9 @@
+<div *ngIf="banana$ | async as banana">
+  <button (click)="newBanana()">New Banana</button>
+  <button (click)="peelBanana()" [disabled]="banana.isPeeled || false">Peel Banana</button>
+  <button (click)="biteBanana()" [disabled]="!banana.isPeeled || false">Bite Banana</button>
+  <button (click)="rotBanana()">Rot Banana</button>
+  <h4>isPeeled: {{banana.isPeeled}}</h4>
+  <h4>bites remaining: {{banana.bitesRemaining}}</h4>
+  <h4>color: {{banana.color}}</h4>
+</div>
