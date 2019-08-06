@@ -1,8 +1,8 @@
 import { createReducer, on } from '@ngrx/store';
 import { eatBanana, peelBanana, getNewBanana, timeHopComplete } from './banana.actions';
-import { initialState, State } from './banana.state';
+import { initialBananaState, State } from './banana.state';
 
-export const bananaReducer = createReducer(initialState,
+export const bananaReducer = createReducer(initialBananaState,
         on(getNewBanana, state => ({
             isPeeled: false,
             bitesRemaining: 9,

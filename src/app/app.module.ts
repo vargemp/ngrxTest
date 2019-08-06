@@ -9,6 +9,7 @@ import { effects, reducers } from './app.state';
 import { CarComponent } from './car/car.component';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
+import * as fromCar from './car/state/car.reducer';
 const appRoutes: Routes = [
   {path: 'banana', component: BananaComponent},
   {path: 'car', component: CarComponent},
@@ -30,6 +31,7 @@ const appRoutes: Routes = [
     }),
     BrowserModule,
     StoreModule.forRoot(reducers),
+    StoreModule.forFeature(fromCar.carFeatureKey, fromCar.carReducer),
     EffectsModule.forRoot(effects)
   ],
   providers: [],

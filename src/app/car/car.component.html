@@ -1,1 +1,10 @@
-<p>car works!</p>
+<div *ngIf="car$ | async as car">
+    <button (click)="drive(21)">Drive car!</button>
+    <button (click)="newCar()">Get new car</button>
+    <button (click)="refuel(4)" [disabled]='car.fuelRemaining+4 >= 100'>Refuel</button>
+    <h3>brand: {{ car.brand }}</h3>
+    <h3>fuel remaining: {{ car.fuelRemaining }}  </h3>
+    <h3>consumption: {{ car.consumption }}</h3>
+    <h3>distance to go: {{ car.distanceToGo }}</h3>
+    <h3>distance remaining: {{ car.distanceRemaining }} </h3>
+</div>

@@ -18,7 +18,7 @@ export class BananaComponent implements OnInit {
 
   ngOnInit() {
     this.newBanana();
-    this.banana$ = this.store.pipe(select(getMyBanana));
+    this.banana$ = this.store.pipe(select(state => state.banana));
   }
 
   newBanana() {

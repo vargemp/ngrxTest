@@ -1,9 +1,9 @@
 export interface State {
     brand: string;
     fuelRemaining: number;
-    consumption: number;
+    consumption: number; // per 1 km
     distanceToGo: number;
     distanceRemaining: number;
 }
 
-export const initialState: State = {} as State;
+export const initialCarState: State = {} as State;

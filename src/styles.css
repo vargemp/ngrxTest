@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+button{
+    margin-right: 5px;
+}
+
+a{
+    color: royalblue;
+}
+
+h3, h4{
+    color: royalblue;
+}
