@@ -1,8 +1,8 @@
 import { createReducer, on } from '@ngrx/store';
 import { initialCarState, State } from './car.state';
-import { buildNewCar, driveCar, refuelCar, getApiCar, apiCarLoaded } from './car.actions';
+import { buildNewCar, driveCar, refuelCar, apiCarLoaded, carLoadError } from './car.actions';
 
-export const carFeatureKey = 'car';
+// export const carFeatureKey = 'car';
 
 const brands = [
     'mazda', 'mercedes', 'bmw', 'dodge'
@@ -16,14 +16,16 @@ export const carReducer = createReducer(initialCarState,
         fuelRemaining: 100,
         consumption: (Math.floor(Math.random() * 4) + 7) * 0.01,
         distanceToGo: 50 + Math.floor(Math.random() * 200),
-        distanceRemaining: Math.floor(100 / (state.consumption))
+        distanceRemaining: Math.floor(100 / (state.consumption)),
+        errorMsg: ''
      })),
-     on(apiCarLoaded, (state, { brand, fuel, consumption, distToGo } ) => ({
-        brand: brand,
-        fuelRemaining: fuel,
-        consumption: consumption,
-        distanceToGo: distToGo,
-        distanceRemaining: calculateRemainingDistance(fuel, consumption)
+     on(apiCarLoaded, (state, { car } ) => ({
+        brand: car.brand,
+        fuelRemaining: car.fuel,
+        consumption: car.consumption,
+        distanceToGo: car.distanceToGo,
+        distanceRemaining: calculateRemainingDistance(car.fuel, car.consumption),
+        errorMsg: ''
      })),
      on(driveCar, (state, { distance }) => ({
          ...state,
@@ -35,6 +37,10 @@ export const carReducer = createReducer(initialCarState,
          ...state,
          fuelRemaining: state.fuelRemaining + fuelAmount,
          distanceRemaining: calculateRemainingDistance(state.fuelRemaining + fuelAmount, state.consumption)
+     })),
+     on(carLoadError, (state, { errorMsg }) => ({
+         ...state,
+         errorMsg: `${errorMsg.name}: ${errorMsg.message} from ${errorMsg.url}.`,
      }))
 );
 

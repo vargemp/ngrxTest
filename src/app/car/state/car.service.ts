@@ -1,10 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Car } from './car.actions';
 
-@Injectable({
-    providedIn: 'root'
-  })
+@Injectable()
   export class CarService {
     constructor (private http: HttpClient) {}
 
@@ -12,5 +10,12 @@ import { Car } from './car.actions';
 
     getAll() {
       return this.http.get<Car>(this.url);
+    }
+
+    getOther() {
+      const data = this.http.get('http://plgli2ws01:4000/api/events?PageNumber=1&PageSize=10', {
+        withCredentials: true
+   });
+      data.subscribe(x => console.log(x));
     }
   }

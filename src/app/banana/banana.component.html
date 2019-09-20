@@ -1,9 +1,16 @@
-<div *ngIf="banana$ | async as banana">
+<div *ngIf="banana$ | async as banana" #thisDiv>
+  <input type="range" #ranger name="width" #width min="200" max="800" step="50" value="400" (input)="setWidth(ranger.value)"> <h4>Width: {{divWidth | json}}</h4><br>
   <button (click)="newBanana()">New Banana</button>
-  <button (click)="peelBanana()" [disabled]="banana.isPeeled || false">Peel Banana</button>
-  <button (click)="biteBanana()" [disabled]="!banana.isPeeled || false">Bite Banana</button>
+  <button (click)="peelBanana()" [disabled]="banana.isPeeled">Peel Banana</button>
+  <button (click)="biteBanana()" [disabled]="!banana.isPeeled || (banana.bitesRemaining-biteSize<0)">Bite Banana</button>
   <button (click)="rotBanana()">Rot Banana</button>
   <h4>isPeeled: {{banana.isPeeled}}</h4>
   <h4>bites remaining: {{banana.bitesRemaining}}</h4>
   <h4>color: {{banana.color}}</h4>
+  <button (click)="colorBackground(thisDiv)" [@animButton]="buttonClicked" (click)="buttonClicked = !buttonClicked" id="colorBtn">Change background color!</button>
+  <h4 #randomVal>Value: {{ value }}</h4>
+</div>
+<div>
+  <app-funny-text [funnyText]="childText"></app-funny-text>
+  <app-child-component [text]="'blabal'"></app-child-component>
 </div>

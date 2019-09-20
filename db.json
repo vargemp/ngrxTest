@@ -2,9 +2,10 @@
     "cars": {
         "id": 1,
         "brand": "BMW",
-        "consumption": 0.05,
+        "consumption": 0.45,
         "distanceToGo": 1200,
-        "fuel": 100
+        "fuel": 100,
+        "errorMsg": "blabla"
     },
     "profile": {
         "name": "typicode"

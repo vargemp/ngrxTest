@@ -1,0 +1,7 @@
+:host {
+    border: 1px solid chartreuse;
+    display: block;
+    width: 500px;
+    background-color: gray;
+    color: blueviolet; 
+}

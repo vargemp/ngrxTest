@@ -1,0 +1,11 @@
+:host {
+    border: 1px solid red;
+    display: block;
+    width: 400px;
+    background-color: midnightblue; 
+}
+
+button:not([disabled]):hover {
+    transform: scale(1.1);
+    transition: transform 200ms;
+}
